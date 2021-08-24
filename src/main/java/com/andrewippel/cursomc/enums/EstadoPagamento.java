@@ -1,14 +1,15 @@
 package com.andrewippel.cursomc.enums;
 
-public enum TipoCliente {
+public enum EstadoPagamento {
 
-    PESSOA_FISICA(1, "Pessoa Física"),
-    PESSOA_JURIDICA(2, "Pessoa Jurídica");
+    PENDENTE(1, "Pendente"),
+    QUITADO(2, "Quitado"),
+    CANCELADO(3, "Cancelado");
 
     private Integer cod;
     private String descricao;
 
-    TipoCliente(Integer cod, String descricao) {
+    EstadoPagamento(Integer cod, String descricao) {
         this.cod = cod;
         this.descricao = descricao;
     }
@@ -21,17 +22,17 @@ public enum TipoCliente {
         return descricao;
     }
 
-    public static TipoCliente getEnum(Integer cod) {
+    public static EstadoPagamento getEnum(Integer cod) {
         if (cod == null) {
             return null;
         }
 
-        for (TipoCliente t : TipoCliente.values()) {
+        for (EstadoPagamento t : EstadoPagamento.values()) {
             if (cod.equals(t.getCod())) {
                 return t;
             }
         }
 
-        throw new IllegalArgumentException("Tipo de cliente inválido: " + cod);
+        throw new IllegalArgumentException("Estado do pagamento inválido: " + cod);
     }
 }
