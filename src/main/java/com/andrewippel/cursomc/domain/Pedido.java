@@ -1,5 +1,9 @@
 package com.andrewippel.cursomc.domain;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
+
 import javax.persistence.*;
 import java.io.Serializable;
 import java.util.*;
@@ -12,11 +16,14 @@ public class Pedido implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
+    @JsonFormat(pattern = "dd/MM/yyyy HH:mm")
     private Date instante;
 
+    @JsonManagedReference
     @OneToOne(cascade = CascadeType.ALL, mappedBy = "pedido")
     private Pagamento pagamento;
 
+    @JsonManagedReference
     @ManyToOne
     @JoinColumn(name = "cliente_id")
     private Cliente cliente;
@@ -86,10 +93,11 @@ public class Pedido implements Serializable {
         this.itens = itens;
     }
 
-    public List<Pedido> getPedidos() {
-        List<Pedido> lista = new ArrayList<>();
+    @JsonIgnore
+    public List<Produto> getProdutos() {
+        List<Produto> lista = new ArrayList<>();
         for (ItemPedido i : itens) {
-            lista.add(i.getPedido());
+            lista.add(i.getProduto());
         }
         return lista;
     }
