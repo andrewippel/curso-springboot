@@ -1,7 +1,6 @@
 package com.andrewippel.cursomc.domain;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
-import javassist.expr.NewArray;
 
 import javax.persistence.*;
 import java.io.Serializable;
