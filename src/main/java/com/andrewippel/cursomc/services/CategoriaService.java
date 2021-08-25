@@ -2,8 +2,10 @@ package com.andrewippel.cursomc.services;
 
 import com.andrewippel.cursomc.domain.Categoria;
 import com.andrewippel.cursomc.repositories.CategoriaRepository;
+import com.andrewippel.cursomc.services.exceptions.DataIntegrityException;
 import com.andrewippel.cursomc.services.exceptions.ObjectNotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.stereotype.Service;
 
 import java.util.Optional;
@@ -28,6 +30,15 @@ public class CategoriaService {
         obj.setId(id);
         find(obj.getId());
         return repo.save(obj);
+    }
+
+    public void delete(Integer id) {
+        find(id);
+        try {
+            repo.deleteById(id);
+        } catch (DataIntegrityViolationException e) {
+            throw new DataIntegrityException("Não é possível excluir uma categoria que possui produtos.");
+        }
     }
 
 }
