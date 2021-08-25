@@ -1,6 +1,7 @@
 package com.andrewippel.cursomc.services;
 
 import com.andrewippel.cursomc.domain.Categoria;
+import com.andrewippel.cursomc.dto.CategoriaDTO;
 import com.andrewippel.cursomc.repositories.CategoriaRepository;
 import com.andrewippel.cursomc.services.exceptions.DataIntegrityException;
 import com.andrewippel.cursomc.services.exceptions.ObjectNotFoundException;
@@ -54,4 +55,7 @@ public class CategoriaService {
         }
     }
 
+    public Categoria fromDTO(CategoriaDTO objDTO) {
+        return new Categoria(objDTO.getId(), objDTO.getNome());
+    }
 }
