@@ -1,8 +1,6 @@
 package com.andrewippel.cursomc.resources;
 
-import com.andrewippel.cursomc.domain.Cliente;
 import com.andrewippel.cursomc.domain.Pedido;
-import com.andrewippel.cursomc.services.ClienteService;
 import com.andrewippel.cursomc.services.PedidoService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -19,8 +17,8 @@ public class PedidoResource {
     private PedidoService service;
 
     @RequestMapping(value = "/{id}", method = RequestMethod.GET)
-    public ResponseEntity<?> find(@PathVariable Integer id) {
-        Pedido obj = service.buscar(id);
+    public ResponseEntity<Pedido> find(@PathVariable Integer id) {
+        Pedido obj = service.find(id);
         return ResponseEntity.ok().body(obj);
     }
 
