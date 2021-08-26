@@ -1,7 +1,6 @@
 package com.andrewippel.cursomc.services;
 
 import com.andrewippel.cursomc.domain.Categoria;
-import com.andrewippel.cursomc.domain.Cliente;
 import com.andrewippel.cursomc.dto.CategoriaDTO;
 import com.andrewippel.cursomc.repositories.CategoriaRepository;
 import com.andrewippel.cursomc.services.exceptions.DataIntegrityException;
